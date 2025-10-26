@@ -12,9 +12,12 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1(vue@3.5.22(typescript@5.5.4))
       antd-v:
-        specifier: ^0.0.3
-        version: 0.0.3(typescript@5.5.4)
+        specifier: ^0.0.5
+        version: 0.0.5(typescript@5.5.4)
     devDependencies:
+      '@ant-design/colors':
+        specifier: ^7.2.1
+        version: 7.2.1
       '@ant-design/fast-color':
         specifier: ^3.0.0
         version: 3.0.0
@@ -69,6 +72,9 @@ importers:
       antd-style:
         specifier: ^3.7.1
         version: 3.7.1(@types/react@19.2.2)(antd@5.27.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      dayjs:
+        specifier: ^1.11.18
+        version: 1.11.18
       dumi:
         specifier: ^2.4.13
         version: 2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@20.5.1)(@types/react@19.2.2)(@types/webpack@5.28.5(@swc/core@1.9.2(@swc/helpers@0.5.15)))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(@swc/core@1.9.2(@swc/helpers@0.5.15)))(webpack@5.102.1(@swc/core@1.9.2(@swc/helpers@0.5.15))))(eslint@8.57.1)(lightningcss@1.30.2)(prettier@2.8.8)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(rollup@3.29.5)(stylelint@14.16.1)(terser@5.44.0)(type-fest@1.4.0)(typescript@5.5.4)(webpack@5.102.1(@swc/core@1.9.2(@swc/helpers@0.5.15)))
@@ -2954,8 +2960,8 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  antd-v@0.0.3:
-    resolution: {integrity: sha512-o/hu46xm+rYCWY1sjd+gSutJdbmQQfvSZ9hbf2chYACZlQQi85YkIK4UgSqyEMEh5GBDoeZswlvfZbNFmvVCvQ==}
+  antd-v@0.0.5:
+    resolution: {integrity: sha512-/TaU0J1lxgEC3T2whu1VRVEoWRa8RJg5+eX72GtWAW3N2qJ7MNZ2CPC95m8MozA+e8u8znNXe1MzAIiEdfRdsg==}
 
   antd@5.27.6:
     resolution: {integrity: sha512-70HrjVbzDXvtiUQ5MP1XdNudr/wGAk9Ivaemk6f36yrAeJurJSmZ8KngOIilolLRHdGuNc6/Vk+4T1OZpSjpag==}
@@ -11715,7 +11721,7 @@ snapshots:
       - moment
       - react-is
 
-  antd-v@0.0.3(typescript@5.5.4):
+  antd-v@0.0.5(typescript@5.5.4):
     dependencies:
       '@ant-design/colors': 7.2.1
       '@ant-design/fast-color': 3.0.0

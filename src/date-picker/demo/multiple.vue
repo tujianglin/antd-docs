@@ -1,0 +1,35 @@
+<script lang="tsx" setup>
+import { DatePicker, Flex } from 'antd-v';
+import dayjs from 'dayjs';
+import { ref } from 'vue';
+
+const defaultValue = ref([dayjs('2000-01-01')]);
+
+const onChange = (date, dateString) => {
+  console.log(date, dateString);
+};
+</script>
+<template>
+  <Flex vertical gap="small">
+    <DatePicker
+      multiple
+      @change="onChange"
+      max-tag-count="responsive"
+      v-model:value="defaultValue"
+      size="small"
+    />
+    <DatePicker
+      multiple
+      @change="onChange"
+      max-tag-count="responsive"
+      v-model:value="defaultValue"
+    />
+    <DatePicker
+      multiple
+      @change="onChange"
+      max-tag-count="responsive"
+      v-model:value="defaultValue"
+      size="large"
+    />
+  </Flex>
+</template>

@@ -66,6 +66,7 @@
     "vue": ">=3.3.0"
   },
   "devDependencies": {
+    "@ant-design/colors": "^7.2.1",
     "@ant-design/fast-color": "^3.0.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
@@ -84,6 +85,7 @@
     "@vue/test-utils": "^2.4.6",
     "@wimi/dumi-theme-antd": "^0.4.6",
     "antd-style": "^3.7.1",
+    "dayjs": "^1.11.18",
     "dumi": "^2.4.13",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^9.17.0",
@@ -105,6 +107,6 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "antd-v": "^0.0.3"
+    "antd-v": "^0.0.5"
   }
 }
