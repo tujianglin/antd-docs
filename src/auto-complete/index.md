@@ -22,10 +22,16 @@ demo:
 
 ## 代码演示
 
-<code src="./基础使用.vue">基础使用</code>
-<code src="./多种形态.vue">多种形态</code>
-<code src="./自定义输入组件.vue">自定义输入组件</code>
-<code src="./自定义选项.vue">自定义选项</code>
+<!-- prettier-ignore -->
+<code src="./demo/basic.vue">基本使用</code>
+<code src="./demo/options.vue">自定义选项</code>
+<code src="./demo/custom.vue">自定义输入组件</code>
+<code src="./demo/non-case-sensitive.vue">不区分大小写</code>
+<code src="./demo/certain-category.vue">查询模式 - 确定类目</code>
+<code src="./demo/uncertain-category.vue">查询模式 - 不确定类目</code>
+<code src="./demo/status.vue">自定义状态</code>
+<code src="./demo/variant.vue" version="5.13.0">多种形态</code>
+<code src="./demo/allowClear.vue">自定义清除按钮</code>
 
 ## API
 
@@ -33,18 +39,20 @@ demo:
 
 | 参数                        | 说明                                                                                                                                            | 类型                                                                               | 默认值              | 版本                |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------- | ------------------- |
-| allowClear                  | 支持清除                                                                                                                                        | boolean \| { clearIcon?: VNode }                                               | false               | 5.8.0: 支持对象形式 |
+| allowClear                  | 支持清除                                                                                                                                        | boolean \| { clearIcon?: ReactNode }                                               | false               | 5.8.0: 支持对象形式 |
 | autoFocus                   | 自动获取焦点                                                                                                                                    | boolean                                                                            | false               |                     |
 | backfill                    | 使用键盘选择选项的时候把选中项回填到输入框中                                                                                                    | boolean                                                                            | false               |                     |
+| children (自动完成的数据源) | 自动完成的数据源，不能和自定义输入框同时配置                                                                                                    | React.ReactElement&lt;OptionProps> \| Array&lt;React.ReactElement&lt;OptionProps>> | -                   |                     |
+| children (自定义输入框)     | 自定义输入框，不能和自动完成的数据源同时配置                                                                                                    | HTMLInputElement \| HTMLTextAreaElement \| React.ReactElement&lt;InputProps>       | &lt;Input />        |                     |
 | classNames                  | 语义化结构 class                                                                                                                                | [Record<SemanticDOM, string>](#semantic-dom)                                       | -                   | 5.25.0              |
 | defaultActiveFirstOption    | 是否默认高亮第一个选项                                                                                                                          | boolean                                                                            | true                |                     |
 | defaultOpen                 | 是否默认展开下拉菜单                                                                                                                            | boolean                                                                            | -                   |                     |
 | defaultValue                | 指定默认选中的条目                                                                                                                              | string                                                                             | -                   |                     |
 | disabled                    | 是否禁用                                                                                                                                        | boolean                                                                            | false               |                     |
-| popupRender                 | 自定义下拉框内容                                                                                                                                | (originNode: VNode) => VNode                                               | -                   |                     |
+| popupRender                 | 自定义下拉框内容                                                                                                                                | (originNode: ReactNode) => ReactNode                                               | -                   |                     |
 | popupMatchSelectWidth       | 下拉菜单和选择器同宽。默认将设置 `min-width`，当值小于选择框宽度时会被忽略。false 时会关闭虚拟滚动                                              | boolean \| number                                                                  | true                |                     |
 | getPopupContainer           | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。[示例](https://codesandbox.io/s/4j168r7jw0) | function(triggerNode)                                                              | () => document.body |                     |
-| notFoundContent             | 当下拉列表为空时显示的内容                                                                                                                      | VNode                                                                          | -                   |                     |
+| notFoundContent             | 当下拉列表为空时显示的内容                                                                                                                      | ReactNode                                                                          | -                   |                     |
 | open                        | 是否展开下拉菜单                                                                                                                                | boolean                                                                            | -                   |                     |
 | options                     | 数据化配置选项内容，相比 jsx 定义会获得更好的渲染性能                                                                                           | { label, value }\[]                                                                | -                   |                     |
 | placeholder                 | 输入框提示                                                                                                                                      | string                                                                             | -                   |                     |
@@ -78,3 +86,15 @@ demo:
 | ------- | -------- | ---- |
 | blur()  | 移除焦点 |      |
 | focus() | 获取焦点 |      |
+
+## FAQ
+
+### 为何受控状态下使用 onSearch 无法输入中文？
+
+请使用 `onChange` 进行受控管理。`onSearch` 触发于搜索输入，与 `onChange` 时机不同。此外，点击选项时也不会触发 `onSearch` 事件。
+
+相关 issue：[#18230](https://github.com/ant-design/ant-design/issues/18230) [#17916](https://github.com/ant-design/ant-design/issues/17916)
+
+### 为何 options 为空时，受控 open 展开不会显示下拉菜单？
+
+AutoComplete 组件本质上是 Input 输入框的一种扩展，当 `options` 为空时，显示空文本会让用户误以为该组件不可操作，实际上它仍然可以进行文本输入操作。因此，为了避免给用户带来困惑，当 `options` 为空时，`open` 属性为 `true` 也不会展示下拉菜单，需要与 `options` 属性配合使用。
