@@ -7,6 +7,8 @@ export default defineConfig({
     entryFile: 'src/index.ts',
   },
   outputPath: 'docs-dist',
+  base: '/antd-docs/',
+  publicPath: '/antd-docs/',
   themeConfig: defineThemeConfig({
     name: 'antd-docs',
   }),

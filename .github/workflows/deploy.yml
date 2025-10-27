@@ -37,6 +37,9 @@ jobs:
       - name: Build docs
         run: pnpm run docs:build
 
+      - name: Create .nojekyll file
+        run: touch docs-dist/.nojekyll
+
       - name: Verify build output
         run: |
           ls -la docs-dist/
