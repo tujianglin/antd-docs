@@ -1,30 +1,11 @@
-<template>
-  <Mentions
-    style="width: 100%"
-    :loading="loading"
-    :options="
-      users.map(({ login, avatar_url: avatar }) => ({
-        key: login,
-        value: login,
-        className: 'antd-demo-dynamic-option',
-        label: () =>
-          h('span', {}, [
-            h('img', { draggable: false, src: avatar, alt: login }),
-            h('span', {}, login),
-          ]),
-      }))
-    "
-  />
-</template>
-
-<script setup lang="ts">
-import { h, ref } from 'vue';
+<script lang="tsx" setup>
 import { Mentions } from 'antd-v';
-import debounce from 'lodash-es';
+import { debounce } from 'lodash-es';
+import { h, ref } from 'vue';
 
 const loading = ref(false);
 const users = ref<{ login: string; avatar_url: string }[]>([]);
-const domRef = ref<string | null>(null);
+const domRef = ref<string>(null);
 
 const loadGithubUsers = (key: string) => {
   if (!key) {
@@ -45,6 +26,7 @@ const loadGithubUsers = (key: string) => {
 const debounceLoadGithubUsers = debounce(loadGithubUsers, 800);
 
 const onSearch = (search: string) => {
+  console.log('Search:', search);
   domRef.value = search;
   loading.value = !!search;
   users.value = [];
@@ -52,3 +34,17 @@ const onSearch = (search: string) => {
   debounceLoadGithubUsers(search);
 };
 </script>
+<template>
+  <Mentions
+    class="!w-full"
+    :loading="loading"
+    @search="onSearch"
+    :options="
+      users.map(({ login, avatar_url: avatar }) => ({
+        key: login,
+        value: login,
+        label: [h('img', { draggable: false, src: avatar, alt: login, style: { width: '20px' } }), h('span', {}, login)],
+      }))
+    "
+  />
+</template>
