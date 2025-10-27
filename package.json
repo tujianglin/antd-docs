@@ -108,6 +108,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@vueuse/core": "^14.0.0",
     "antd-v": "^0.0.5",
     "lodash-es": "^4.17.21",
     "runes2": "^1.1.4"

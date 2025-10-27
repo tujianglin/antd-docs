@@ -1,24 +1,29 @@
+<script lang="tsx" setup>
+import { DatePicker, Space } from 'antd-v';
+import { SmileOutlined } from '@ant-design/icons-vue';
+import type { Dayjs } from 'dayjs';
+
+const { RangePicker } = DatePicker;
+
+const smileIcon = <SmileOutlined />;
+
+const onChange = (date: Dayjs | (Dayjs | null)[] | null, dateString: string | string[]) => {
+  console.log(date, dateString);
+};
+</script>
 <template>
-  <Space vertical :size="12">
-    <DatePicker :suffix-icon="() => h(SmileOutlined)" />
-    <DatePicker :suffix-icon="() => h(SmileOutlined)" picker="month" />
-    <RangePicker :suffix-icon="() => h(SmileOutlined)" />
-    <DatePicker :suffix-icon="() => h(SmileOutlined)" picker="week" />
-    <DatePicker suffix-icon="ab" />
-    <DatePicker suffix-icon="ab" picker="month" />
-    <RangePicker suffix-icon="ab" />
-    <DatePicker suffix-icon="ab" picker="week" />
-    <DatePicker :prefix="() => h(SmileOutlined)" picker="week" />
-    <DatePicker prefix="Event Period" picker="week" />
-    <RangePicker :prefix="() => h(SmileOutlined)" picker="week" />
-    <RangePicker prefix="Event Period" picker="week" />
+  <Space orientation="vertical" :size="12">
+    <DatePicker :suffix-icon="smileIcon" @change="onChange" />
+    <DatePicker :suffix-icon="smileIcon" @change="onChange" picker="month" />
+    <RangePicker :suffix-icon="smileIcon" @change="onChange" />
+    <DatePicker :suffix-icon="smileIcon" @change="onChange" picker="week" />
+    <DatePicker suffix-icon="ab" @change="onChange" />
+    <DatePicker suffix-icon="ab" @change="onChange" picker="month" />
+    <RangePicker suffix-icon="ab" @change="onChange" />
+    <DatePicker suffix-icon="ab" @change="onChange" picker="week" />
+    <DatePicker :prefix="smileIcon" @change="onChange" picker="week" />
+    <DatePicker prefix="Event Period" @change="onChange" picker="week" />
+    <RangePicker :prefix="smileIcon" @change="onChange" picker="week" />
+    <RangePicker prefix="Event Period" @change="onChange" picker="week" />
   </Space>
 </template>
-
-<script setup lang="ts">
-import { h } from 'vue';
-import { SmileOutlined } from '@ant-design/icons-vue';
-import { DatePicker, Space } from 'antd-v';
-
-const RangePicker = DatePicker.RangePicker;
-</script>

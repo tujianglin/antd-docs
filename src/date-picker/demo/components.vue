@@ -1,79 +1,74 @@
+<script lang="tsx" setup>
+import { Button, DatePicker, Flex, Slider, Space } from 'antd-v';
+import { reactiveComputed } from '@vueuse/core';
+import dayjs from 'dayjs';
+import { computed, defineComponent, ref, toRefs, watch } from 'vue';
+import { SharedPanelProps } from 'antd-v/dist/vc-component/picker/interface';
+
+const dateValue = ref();
+
+const MyDatePanel = defineComponent({
+  setup(_, { attrs }) {
+    const { value, onSelect, onHover } = toRefs(
+      reactiveComputed(() => attrs as unknown as SharedPanelProps),
+    );
+
+    const startDate = dayjs().date(1).month(0);
+    const innerValue = ref(value.value || startDate);
+
+    watch(value, () => {
+      if (value.value) {
+        innerValue.value = value.value;
+      }
+    });
+
+    // Range
+    const dateCount = computed(() => {
+      const endDate = startDate.add(1, 'year').add(-1, 'day');
+      return endDate.diff(startDate, 'day');
+    });
+
+    const sliderValue = computed(() =>
+      Math.min(
+        Math.max(0, innerValue.value.diff(startDate, 'day')),
+        dateCount.value,
+      ),
+    );
+
+    return () => (
+      <Flex vertical gap="small" style={{ padding: 'px' }}>
+        <Slider
+          class="w-full"
+          min={0}
+          max={dateCount.value}
+          value={sliderValue.value}
+          onChange={(nextValue) => {
+            const nextDate = startDate.add(nextValue as number, 'day');
+            innerValue.value = nextDate;
+            onHover?.value?.(nextDate);
+          }}
+          tooltip={{
+            formatter: (nextValue) =>
+              startDate.add(nextValue || 0, 'day').format('YYYY-MM-DD'),
+          }}
+        />
+        <Button
+          type="primary"
+          onClick={() => {
+            onSelect?.value?.(innerValue.value);
+          }}
+        >{`That's It!`}</Button>
+      </Flex>
+    );
+  },
+});
+</script>
 <template>
-  <Space vertical>
+  <Space orientation="vertical">
     <DatePicker
+      v-model:value="dateValue"
       :show-now="false"
-      :components="{
-        date: MyDatePanel,
-      }"
+      :components="{ date: MyDatePanel }"
     />
   </Space>
 </template>
-
-<script setup lang="ts">
-import { h, ref, computed } from 'vue';
-import { Button, DatePicker, Flex, Slider, Space, Typography } from 'antd-v';
-import dayjs from 'dayjs';
-
-const MyDatePanel = (props: any) => {
-  const { value, onSelect, onHover } = props;
-
-  const startDate = computed(() => dayjs().date(1).month(0));
-  const innerValue = ref(value || startDate.value);
-
-  const dateCount = computed(() => {
-    const endDate = startDate.value.add(1, 'year').add(-1, 'day');
-    return endDate.diff(startDate.value, 'day');
-  });
-
-  const sliderValue = ref(
-    Math.min(
-      Math.max(0, innerValue.value.diff(startDate.value, 'day')),
-      dateCount.value,
-    ),
-  );
-
-  return h(
-    'div',
-    {
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
-        padding: '16px',
-      },
-    },
-    [
-      h(
-        Typography.Title,
-        { level: 4, style: { margin: 0 }, title: "no, it's not" },
-        'The BEST Picker Panel',
-      ),
-      h(Slider, {
-        min: 0,
-        max: dateCount.value,
-        modelValue: sliderValue.value,
-        'onUpdate:modelValue': (val: number) => {
-          sliderValue.value = val;
-          const nextDate = startDate.value.add(val, 'day');
-          innerValue.value = nextDate;
-          onHover?.(nextDate);
-        },
-        tooltip: {
-          formatter: (val: number) =>
-            startDate.value.add(val || 0, 'day').format('YYYY-MM-DD'),
-        },
-      }),
-      h(
-        Button,
-        {
-          type: 'primary',
-          onClick: () => {
-            onSelect(innerValue.value);
-          },
-        },
-        "That's It!",
-      ),
-    ],
-  );
-};
-</script>

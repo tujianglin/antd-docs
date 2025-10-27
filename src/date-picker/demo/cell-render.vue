@@ -1,37 +1,31 @@
-<template>
-  <Space :size="12" vertical>
-    <DatePicker :cell-render="cellRender" />
-    <DatePicker.RangePicker :cell-render="cellRender" />
-  </Space>
-</template>
+<script lang="tsx" setup>
+import { DatePicker, Space, theme, type DatePickerProps } from 'antd-v';
+import type { CSSProperties } from 'vue';
 
-<script setup lang="ts">
-import { h } from 'vue';
-import { DatePicker, Space, theme } from 'antd-v';
+const { RangePicker } = DatePicker;
 
 const { token } = theme.useToken();
-
-const cellRender = (current: any, info: any) => {
+const style: CSSProperties = {
+  border: `1px solid ${token.value.colorPrimary}`,
+  borderRadius: '50%',
+};
+const cellRender: DatePickerProps['cellRender'] = (current, info) => {
   if (info.type !== 'date') {
     return info.originNode;
   }
   if (typeof current === 'number' || typeof current === 'string') {
-    return h('div', { class: 'ant-picker-cell-inner' }, current);
+    return <div class="ant-picker-cell-inner">{current}</div>;
   }
-  const style =
-    current.date() === 1
-      ? {
-          border: `1px solid ${token.value.colorPrimary}`,
-          borderRadius: '50%',
-        }
-      : {};
-  return h(
-    'div',
-    {
-      class: 'ant-picker-cell-inner',
-      style,
-    },
-    current.date(),
+  return (
+    <div class="ant-picker-cell-inner" style={current.date() === 1 ? style : {}}>
+      {current.date()}
+    </div>
   );
 };
 </script>
+<template>
+  <Space orientation="vertical" :size="12">
+    <DatePicker :cell-render="cellRender" />
+    <RangePicker :cell-render="cellRender" />
+  </Space>
+</template>

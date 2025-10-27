@@ -1,5 +1,17 @@
+<script lang="tsx" setup>
+import { DatePicker, Space } from 'antd-v';
+import { effect, ref } from 'vue';
+
+const { RangePicker } = DatePicker;
+
+const value = ref();
+
+effect(() => {
+  console.log(value.value);
+});
+</script>
 <template>
-  <Space vertical :size="12">
+  <Space orientation="vertical" :size="12">
     <RangePicker />
     <RangePicker show-time />
     <RangePicker picker="week" />
@@ -11,12 +23,16 @@
         start: 'startInput',
         end: 'endInput',
       }"
+      @focus="
+        (_, info) => {
+          console.log('Focus:', info.range);
+        }
+      "
+      @blur="
+        (_, info) => {
+          console.log('Blur:', info.range);
+        }
+      "
     />
   </Space>
 </template>
-
-<script setup lang="ts">
-import { DatePicker, Space } from 'antd-v';
-
-const RangePicker = DatePicker.RangePicker;
-</script>

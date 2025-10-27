@@ -1,21 +1,14 @@
-<template>
-  <Space vertical>
-    <Typography.Title :level="5">7 days range</Typography.Title>
-    <RangePicker :disabled-date="disabled7DaysDate" />
+<script lang="tsx" setup>
+import type { DatePickerProps } from 'antd-v';
+import { DatePicker, Space } from 'antd-v';
+import type { Dayjs } from 'dayjs';
 
-    <Typography.Title :level="5">6 months range</Typography.Title>
-    <RangePicker :disabled-date="disabled6MonthsDate" picker="month" />
-  </Space>
-</template>
+const { RangePicker } = DatePicker;
 
-<script setup lang="ts">
-import { DatePicker, Space, Typography } from 'antd-v';
+const getYearMonth = (date: Dayjs) => date.year() * 12 + date.month();
 
-const RangePicker = DatePicker.RangePicker;
-
-const getYearMonth = (date: any) => date.year() * 12 + date.month();
-
-const disabled7DaysDate = (current: any, { from, type }: any) => {
+// Disabled 7 days from the selected date
+const disabled7DaysDate: DatePickerProps['disabledDate'] = (current, { from, type }) => {
   if (from) {
     const minDate = from.add(-6, 'days');
     const maxDate = from.add(6, 'days');
@@ -25,10 +18,7 @@ const disabled7DaysDate = (current: any, { from, type }: any) => {
         return current.year() < minDate.year() || current.year() > maxDate.year();
 
       case 'month':
-        return (
-          getYearMonth(current) < getYearMonth(minDate) ||
-          getYearMonth(current) > getYearMonth(maxDate)
-        );
+        return getYearMonth(current) < getYearMonth(minDate) || getYearMonth(current) > getYearMonth(maxDate);
 
       default:
         return Math.abs(current.diff(from, 'days')) >= 7;
@@ -38,7 +28,8 @@ const disabled7DaysDate = (current: any, { from, type }: any) => {
   return false;
 };
 
-const disabled6MonthsDate = (current: any, { from, type }: any) => {
+// Disabled 6 months from the selected date
+const disabled6MonthsDate: DatePickerProps['disabledDate'] = (current, { from, type }) => {
   if (from) {
     const minDate = from.add(-5, 'months');
     const maxDate = from.add(5, 'months');
@@ -48,13 +39,17 @@ const disabled6MonthsDate = (current: any, { from, type }: any) => {
         return current.year() < minDate.year() || current.year() > maxDate.year();
 
       default:
-        return (
-          getYearMonth(current) < getYearMonth(minDate) ||
-          getYearMonth(current) > getYearMonth(maxDate)
-        );
+        return getYearMonth(current) < getYearMonth(minDate) || getYearMonth(current) > getYearMonth(maxDate);
     }
   }
 
   return false;
 };
 </script>
+<template>
+  <Space direction="vertical">
+    <RangePicker :disabled-date="disabled7DaysDate" />
+
+    <RangePicker :disabled-date="disabled6MonthsDate" picker="month" />
+  </Space>
+</template>

@@ -1,13 +1,22 @@
+<script lang="tsx" setup>
+import { DatePicker, Space } from 'antd-v';
+import { effect, ref } from 'vue';
+
+const value = ref();
+const onChange = (date, dateString) => {
+  console.log(date, dateString);
+};
+
+effect(() => {
+  console.log(value.value);
+});
+</script>
 <template>
-  <Space vertical>
-    <DatePicker />
-    <DatePicker picker="week" />
-    <DatePicker picker="month" />
-    <DatePicker picker="quarter" />
-    <DatePicker picker="year" />
+  <Space orientation="vertical">
+    <DatePicker v-model:value="value" @change="onChange" />
+    <DatePicker v-model:value="value" @change="onChange" picker="week" />
+    <DatePicker v-model:value="value" @change="onChange" picker="month" />
+    <DatePicker v-model:value="value" @change="onChange" picker="quarter" />
+    <DatePicker v-model:value="value" @change="onChange" picker="year" />
   </Space>
 </template>
-
-<script setup lang="ts">
-import { DatePicker, Space } from 'antd-v';
-</script>
