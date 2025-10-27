@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "antd-v": "^0.0.5"
+    "antd-v": "^0.0.5",
+    "runes2": "^1.1.4"
   }
 }

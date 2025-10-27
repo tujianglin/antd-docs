@@ -52,26 +52,6 @@ demo:
 - DatePicker\[picker="quarter"] (4.1.0 新增)
 - RangePicker
 
-### 国际化配置
-
-默认配置为 en-US，如果你需要设置其他语言，推荐在入口处使用我们提供的国际化组件，详见：[ConfigProvider 国际化](https://ant.design/components/config-provider-cn/)。
-
-如有特殊需求（仅修改单一组件的语言），请使用 locale 参数，参考：[默认配置](https://github.com/ant-design/ant-design/blob/master/components/date-picker/locale/example.json)。
-
-```jsx
-// 默认语言为 en-US，如果你需要设置其他语言，推荐在入口文件全局设置 locale
-// 确保还导入相关的 dayjs 文件，否则所有文本的区域设置都不会更改（例如范围选择器月份）
-// import locale from 'antd-v/locale/zh_CN';
-// import dayjs from 'dayjs';
-
-// import 'dayjs/locale/zh-cn';
-
-// dayjs.locale('zh-cn');
-
-// <ConfigProvider locale={locale}>
-//   <DatePicker defaultValue={dayjs('2015-01-01', 'YYYY-MM-DD')} />
-// </ConfigProvider>;
-```
 
 <!-- prettier-ignore -->
 :::warning
