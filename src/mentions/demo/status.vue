@@ -1,7 +1,7 @@
 <template>
   <Space vertical>
-    <Mentions default-value="@afc163" status="error" :options="options" />
-    <Mentions default-value="@afc163" status="warning" :options="options" />
+    <Mentions value="@afc163" status="error" :options="options" />
+    <Mentions value="@afc163" status="warning" :options="options" />
   </Space>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <InputNumber :min="1" :max="10" :default-value="3" />
+  <InputNumber :min="1" :max="10" :value="3" />
 </template>
 
 <script setup lang="ts">

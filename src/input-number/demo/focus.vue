@@ -6,7 +6,7 @@
       <Button @click="focusAll">Focus to select all</Button>
       <Button @click="focusPreventScroll">Focus prevent scroll</Button>
     </Space>
-    <InputNumber style="width: 100%" :default-value="999" ref="inputRef" />
+    <InputNumber style="width: 100%" :value="999" ref="inputRef" />
   </Space>
 </template>
 

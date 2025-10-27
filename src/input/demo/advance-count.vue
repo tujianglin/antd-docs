@@ -4,7 +4,7 @@
       <Typography.Title :level="5">Exceed Max</Typography.Title>
       <Input
         :count="{ show: true, max: 10 }"
-        default-value="Hello, antd!"
+        value="Hello, antd!"
       />
     </div>
 
@@ -12,7 +12,7 @@
       <Typography.Title :level="5">Emoji count as length 1</Typography.Title>
       <Input
         :count="{ show: true, strategy: (txt) => runes(txt).length }"
-        default-value="🔥🔥🔥"
+        value="🔥🔥🔥"
       />
     </div>
 
@@ -25,7 +25,7 @@
           strategy: (txt) => runes(txt).length,
           exceedFormatter: (txt, { max }) => runes(txt).slice(0, max).join(''),
         }"
-        default-value="🔥 antd"
+        value="🔥 antd"
       />
     </div>
   </Flex>

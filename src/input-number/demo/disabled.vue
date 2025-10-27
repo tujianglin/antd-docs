@@ -1,6 +1,6 @@
 <template>
   <div>
-    <InputNumber :min="1" :max="10" :disabled="disabled" :default-value="3" />
+    <InputNumber :min="1" :max="10" :disabled="disabled" :value="3" />
     <div style="margin-top: 20px">
       <Button @click="toggle" type="primary">
         Toggle disabled

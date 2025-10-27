@@ -3,7 +3,7 @@
     <Button @click="toggleAutoResize" style="margin-bottom: 16">
       Auto Resize: {{ String(autoResize) }}
     </Button>
-    <TextArea :rows="4" :auto-size="autoResize" :default-value="defaultValue" />
+    <TextArea :rows="4" :auto-size="autoResize" :value="defaultValue" />
     <TextArea allow-clear style="width: 93px" />
     <br />
     <TextArea

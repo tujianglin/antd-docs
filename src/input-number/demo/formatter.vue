@@ -1,12 +1,12 @@
 <template>
   <Space>
     <InputNumber
-      :default-value="1000"
+      :value="1000"
       :formatter="formatter"
       :parser="parser"
     />
     <InputNumber
-      :default-value="100"
+      :value="100"
       :min="0"
       :max="100"
       :formatter="(value) => `${value}%`"

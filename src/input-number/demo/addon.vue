@@ -1,16 +1,16 @@
 <template>
   <Space vertical>
-    <InputNumber addon-before="+" addon-after="$" :default-value="100" />
-    <InputNumber :addon-before="selectBefore" :addon-after="selectAfter" :default-value="100" />
-    <InputNumber :addon-after="() => h(SettingOutlined)" :default-value="100" />
+    <InputNumber addon-before="+" addon-after="$" :value="100" />
+    <InputNumber :addon-before="selectBefore" :addon-after="selectAfter" :value="100" />
+    <InputNumber :addon-after="() => h(SettingOutlined)" :value="100" />
     <InputNumber
       :addon-before="() => h(Cascader, { placeholder: 'cascader', style: { width: 150 } })"
-      :default-value="100"
+      :value="100"
     />
     <InputNumber
       addon-before="+"
       :addon-after="() => h(SettingOutlined)"
-      :default-value="100"
+      :value="100"
       :disabled="true"
       controls
     />
@@ -18,7 +18,7 @@
       prefix="¥"
       addon-before="+"
       :addon-after="() => h(SettingOutlined)"
-      :default-value="100"
+      :value="100"
       :disabled="true"
       controls
     />

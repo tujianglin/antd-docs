@@ -10,23 +10,23 @@
     <InputNumber :style="{ width: 100 }" />
     <DatePicker :style="{ width: 100 }" />
     <TimePicker :style="{ width: 100 }" />
-    <Select :style="{ width: 100 }" default-value="jack" :options="selectOptions" />
-    <Select :style="{ width: 100 }" default-value="" :options="selectOptions" />
+    <Select :style="{ width: 100 }" value="jack" :options="selectOptions" />
+    <Select :style="{ width: 100 }" value="" :options="selectOptions" />
     <Select :style="{ width: 100 }" :options="selectOptions" />
     <TreeSelect :style="{ width: 100 }" />
-    <Cascader :default-value="['zhejiang', 'hangzhou', 'xihu']" :options="options" />
+    <Cascader :value="['zhejiang', 'hangzhou', 'xihu']" :options="options" />
     <RangePicker />
     <DatePicker picker="month" />
-    <RadioGroup default-value="a">
+    <RadioGroup value="a">
       <RadioButton value="a">Hangzhou</RadioButton>
       <RadioButton value="b">Shanghai</RadioButton>
     </RadioGroup>
     <AutoComplete :style="{ width: 100 }" placeholder="input here" />
     <br />
-    <Input prefix="$" addon-before="Http://" addon-after=".com" default-value="mysite" />
+    <Input prefix="$" addon-before="Http://" addon-after=".com" value="mysite" />
     <Input :style="narrowStyle" suffix="Y" />
     <Input :style="narrowStyle" />
-    <Input :style="narrowStyle" default-value="1" suffix="Y" />
+    <Input :style="narrowStyle" value="1" suffix="Y" />
   </div>
 </template>
 

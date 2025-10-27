@@ -15,7 +15,7 @@
         label: 'yesmeck',
       },
     ]"
-    default-value="@afc163"
+    value="@afc163"
   />
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <InputNumber
-    :style="{ width: 200 }"
-    default-value="1"
+    :style="{ width: '200px' }"
+    value="1"
     min="0"
     max="10"
     step="0.00000000000001"
