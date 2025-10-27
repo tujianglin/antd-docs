@@ -29,13 +29,18 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build docs
         run: pnpm run docs:build
+
+      - name: Verify build output
+        run: |
+          ls -la docs-dist/
+          echo "Build output verified"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
