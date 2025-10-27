@@ -15,8 +15,8 @@ importers:
         specifier: ^14.0.0
         version: 14.0.0(vue@3.5.22(typescript@5.5.4))
       antd-v:
-        specifier: ^0.0.5
-        version: 0.0.5(typescript@5.5.4)
+        specifier: ^0.0.6
+        version: 0.0.6(typescript@5.5.4)
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2991,8 +2991,8 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  antd-v@0.0.5:
-    resolution: {integrity: sha512-/TaU0J1lxgEC3T2whu1VRVEoWRa8RJg5+eX72GtWAW3N2qJ7MNZ2CPC95m8MozA+e8u8znNXe1MzAIiEdfRdsg==}
+  antd-v@0.0.6:
+    resolution: {integrity: sha512-/+oYLtbWDgStse1Ln610tMexpxtVNDAmHhR1Wxt3hDCTh6Zo5CioRm0YaPLFTDaFzJE+X2NIJWYCFJyZXQ/JkQ==}
 
   antd@5.27.6:
     resolution: {integrity: sha512-70HrjVbzDXvtiUQ5MP1XdNudr/wGAk9Ivaemk6f36yrAeJurJSmZ8KngOIilolLRHdGuNc6/Vk+4T1OZpSjpag==}
@@ -11774,7 +11774,7 @@ snapshots:
       - moment
       - react-is
 
-  antd-v@0.0.5(typescript@5.5.4):
+  antd-v@0.0.6(typescript@5.5.4):
     dependencies:
       '@ant-design/colors': 7.2.1
       '@ant-design/fast-color': 3.0.0
