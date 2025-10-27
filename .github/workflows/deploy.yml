@@ -38,7 +38,9 @@ jobs:
         run: pnpm run docs:build
 
       - name: Create .nojekyll file
-        run: touch docs-dist/.nojekyll
+        run: |
+          touch docs-dist/.nojekyll
+          echo ".nojekyll file created in docs-dist"
 
       - name: Verify build output
         run: |
